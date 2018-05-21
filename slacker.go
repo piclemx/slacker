@@ -76,6 +76,11 @@ func (s *Slacker) Command(usage string, description string, handler func(request
 	s.botCommands = append(s.botCommands, NewBotCommand(usage, description, handler))
 }
 
+// GetUserInfo retrieve complete user information
+func (s *Slacker) GetUserInfo(user string) (*slack.User, error) {
+	return s.client.GetUserInfo(user)
+}
+
 // Listen receives events from Slack and each is handled as needed
 func (s *Slacker) Listen() error {
 	s.prependHelpHandle()
